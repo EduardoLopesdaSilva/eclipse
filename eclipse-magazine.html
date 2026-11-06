@@ -1,0 +1,958 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#100c13">
+  <title>Eclipse Magazine — Fashion. Mystery. Music. Magic.</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+    :root {
+      --ink: #100c13;
+      --panel: #19131d;
+      --panel2: #211925;
+      --wine: #63243d;
+      --plum: #35213e;
+      --silver: #c5bbc8;
+      --muted: #a69aa9;
+      --paper: #f1e9ed;
+      --line: #392d3b;
+      --pink: #d991ad;
+      --green: #83b69c
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      margin: 0;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: 'DM Sans', sans-serif
+    }
+
+    button,
+    input {
+      font: inherit
+    }
+
+    button,
+    a {
+      color: inherit
+    }
+
+    a {
+      text-decoration: none
+    }
+
+    .masthead {
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(120deg, #130d15, #221424 55%, #171019)
+    }
+
+    .topline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1240px;
+      margin: auto;
+      padding: 16px 28px;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: .16em;
+      text-transform: uppercase
+    }
+
+    .brand {
+      text-align: center;
+      padding: 24px 20px 28px
+    }
+
+    .brand h1 {
+      font: 600 clamp(48px, 9vw, 104px)/.86 'Cormorant Garamond', serif;
+      letter-spacing: .04em;
+      margin: 0;
+      text-transform: uppercase
+    }
+
+    .brand p {
+      margin: 16px 0 0;
+      color: #d8bdca;
+      letter-spacing: .29em;
+      text-transform: uppercase;
+      font-size: 11px
+    }
+
+    .nav {
+      display: flex;
+      gap: 4px;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 0 18px 17px
+    }
+
+    .nav button {
+      background: transparent;
+      border: 0;
+      color: #cbbfcb;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-size: 10px;
+      padding: 10px 11px;
+      cursor: pointer
+    }
+
+    .nav button:hover,
+    .nav button.active {
+      color: white;
+      background: #ffffff12
+    }
+
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 30px 26px 70px
+    }
+
+    .page {
+      display: none;
+      animation: in .25s ease
+    }
+
+    .page.active {
+      display: block
+    }
+
+    @keyframes in {
+      from {
+        opacity: 0;
+        transform: translateY(5px)
+      }
+
+      to {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    .kicker {
+      color: var(--pink);
+      text-transform: uppercase;
+      font-size: 10px;
+      letter-spacing: .25em
+    }
+
+    .display {
+      font: 500 clamp(38px, 6vw, 68px)/.98 'Cormorant Garamond', serif;
+      margin: 9px 0 18px
+    }
+
+    .lead {
+      max-width: 670px;
+      color: #c9bdc8;
+      line-height: 1.75
+    }
+
+    .cover {
+      min-height: 450px;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      overflow: hidden;
+      background: linear-gradient(120deg, #1e1221, #54263c 62%, #130e17);
+      border: 1px solid #483343;
+      position: relative
+    }
+
+    .cover-copy {
+      padding: clamp(30px, 6vw, 72px);
+      align-self: center;
+      z-index: 1
+    }
+
+    .cover h2 {
+      font: 500 clamp(52px, 8vw, 102px)/.83 'Cormorant Garamond', serif;
+      margin: 22px 0
+    }
+
+    .cover .subtitle {
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      font-size: 11px;
+      color: #eed8e2
+    }
+
+    .cover-art {
+      position: relative;
+      min-height: 400px;
+      overflow: hidden;
+      background: radial-gradient(ellipse at 55% 32%, #d7b8c2 0 5%, #805364 6% 12%, transparent 13%), radial-gradient(ellipse at 55% 44%, #1a121a 0 20%, transparent 21%), radial-gradient(ellipse at 50% 48%, #552639 0 34%, transparent 35%), linear-gradient(150deg, #241628, #09080d)
+    }
+
+    .cover-art:before {
+      content: '';
+      position: absolute;
+      width: 61%;
+      height: 90%;
+      left: 19%;
+      bottom: -20%;
+      border-radius: 48% 48% 0 0;
+      background: linear-gradient(100deg, #100d14, #30232f 48%, #0c0a0f);
+      box-shadow: 0 0 80px #09070a
+    }
+
+    .cover-art:after {
+      content: '☾';
+      position: absolute;
+      right: 12%;
+      top: 11%;
+      font-size: 68px;
+      color: #e7d7dc;
+      text-shadow: 0 0 35px #f8d6e8
+    }
+
+    .cover-label {
+      position: absolute;
+      bottom: 28px;
+      right: 28px;
+      z-index: 1;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      font-size: 10px
+    }
+
+    .headline-grid,
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 20px
+    }
+
+    .tile,
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 22px
+    }
+
+    .tile {
+      min-height: 145px;
+      cursor: pointer;
+      transition: .2s
+    }
+
+    .tile:hover {
+      background: var(--panel2);
+      transform: translateY(-2px)
+    }
+
+    .tile .num {
+      color: var(--pink);
+      font: italic 25px 'Cormorant Garamond'
+    }
+
+    .tile h3,
+    .card h3 {
+      font: 600 25px/1 'Cormorant Garamond', serif;
+      margin: 11px 0
+    }
+
+    .tile p,
+    .card p {
+      font-size: 13px;
+      color: #b9adb8;
+      line-height: 1.65
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 14px;
+      margin: 10px 0 22px
+    }
+
+    .section-head small {
+      color: var(--muted);
+      letter-spacing: .16em;
+      text-transform: uppercase
+    }
+
+    .button {
+      border: 1px solid #846276;
+      background: #4b243b;
+      color: #fff;
+      padding: 11px 16px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-size: 10px
+    }
+
+    .button:hover {
+      background: #68344f
+    }
+
+    .button.secondary {
+      background: transparent;
+      border-color: var(--line);
+      color: #d6cbd4
+    }
+
+    .button:disabled {
+      opacity: .5;
+      cursor: not-allowed
+    }
+
+    .columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px
+    }
+
+    .sign-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 9px
+    }
+
+    .sign {
+      border: 1px solid var(--line);
+      padding: 13px;
+      background: #17121a
+    }
+
+    .sign b {
+      display: block;
+      font: 600 19px 'Cormorant Garamond';
+      color: #e4c7d4
+    }
+
+    .sign span {
+      display: block;
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 4px
+    }
+
+    .field {
+      width: 100%;
+      background: #110e14;
+      border: 1px solid #493a4b;
+      color: var(--paper);
+      padding: 12px;
+      margin: 6px 0 14px
+    }
+
+    .result {
+      color: var(--pink);
+      font: 500 25px 'Cormorant Garamond';
+      margin: 12px 0
+    }
+
+    .checklist {
+      padding-left: 18px;
+      color: #c6bac5;
+      line-height: 1.9
+    }
+
+    .rating {
+      color: #e0b4c7;
+      letter-spacing: .15em
+    }
+
+    .quote {
+      border-left: 2px solid var(--pink);
+      padding: 10px 0 10px 20px;
+      color: #e7d8e0;
+      font: italic 22px 'Cormorant Garamond';
+      line-height: 1.4
+    }
+
+    .story {
+      font: 400 19px/1.9 'Cormorant Garamond', serif;
+      max-width: 740px;
+      color: #e0d4de
+    }
+
+    .spotify-panel {
+      background: linear-gradient(135deg, #14171a, #1c211e);
+      border-color: #314137
+    }
+
+    .spotify-brand {
+      font-size: 11px;
+      color: #97d4ae;
+      text-transform: uppercase;
+      letter-spacing: .2em
+    }
+
+    .spotify-controls {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center
+    }
+
+    .spotify-controls .field {
+      max-width: 380px;
+      margin: 0
+    }
+
+    .track-list {
+      display: grid;
+      gap: 9px;
+      margin-top: 18px
+    }
+
+    .track {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      background: #121713;
+      border: 1px solid #29352d;
+      padding: 12px
+    }
+
+    .track img {
+      width: 52px;
+      height: 52px;
+      object-fit: cover;
+      background: #29222c
+    }
+
+    .track-info {
+      flex: 1
+    }
+
+    .track-info b {
+      font-size: 13px
+    }
+
+    .track-info span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: 5px
+    }
+
+    .track a {
+      color: #a5ddb7;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .1em
+    }
+
+    .note {
+      font-size: 11px;
+      color: #a89eaa;
+      line-height: 1.6
+    }
+
+    .quiz-q {
+      padding: 15px 0;
+      border-bottom: 1px solid var(--line)
+    }
+
+    .quiz-q b {
+      display: block;
+      margin-bottom: 10px
+    }
+
+    .quiz-q label {
+      display: inline-flex;
+      gap: 6px;
+      align-items: center;
+      margin: 5px 12px 5px 0;
+      color: #c9bdc8;
+      font-size: 12px
+    }
+
+    .poster {
+      min-height: 520px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      background: radial-gradient(circle at 50% 34%, #ddd0d4 0 5%, #997482 6% 7%, transparent 8%), radial-gradient(circle at 50% 40%, #433043 0 22%, transparent 23%), linear-gradient(180deg, #211827, #0c0a10);
+      border: 1px solid #483343
+    }
+
+    .poster h2 {
+      font: italic clamp(54px, 9vw, 104px)/.85 'Cormorant Garamond';
+      text-shadow: 0 2px 25px #09070b
+    }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 24px;
+      text-align: center;
+      color: #8d818f;
+      font: italic 17px 'Cormorant Garamond'
+    }
+
+    .cover-art {
+      min-height: 450px;
+      background: #17101a
+    }
+
+    .cover-art:before,
+    .cover-art:after {
+      content: none
+    }
+
+    .cover-art img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 48%
+    }
+
+    .cover-label {
+      text-shadow: 0 1px 8px #000
+    }
+
+    @media(max-width:760px) {
+      .topline {
+        padding: 12px 17px
+      }
+
+      .cover {
+        grid-template-columns: 1fr
+      }
+
+      .cover-art {
+        min-height: 260px;
+        order: -1
+      }
+
+      .cover-copy {
+        padding: 32px
+      }
+
+      .headline-grid,
+      .grid {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .columns {
+        grid-template-columns: 1fr
+      }
+
+      .sign-grid {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .wrap {
+        padding: 22px 16px 50px
+      }
+
+      .nav {
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap
+      }
+
+      .nav button {
+        white-space: nowrap
+      }
+    }
+
+    @media(max-width:460px) {
+
+      .headline-grid,
+      .grid {
+        grid-template-columns: 1fr
+      }
+
+      .topline span:last-child {
+        display: none
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="masthead">
+    <div class="topline"><span>Edição 01 · Sob a Lua</span><span>Revista para almas curiosas</span></div>
+    <div class="brand">
+      <h1>Eclipse</h1>
+      <p>Fashion · Mystery · Music · Magic</p>
+    </div>
+    <nav class="nav" aria-label="Navegação da revista">
+      <button class="active" data-page="home">Capa</button><button data-page="editorial">Editorial</button><button
+        data-page="horoscopes">Astros & Tarot</button><button data-page="beauty">Beleza</button><button
+        data-page="fashion">Moda</button><button data-page="film">Cinema</button><button
+        data-page="books">Livros</button><button data-page="stories">Contos</button><button
+        data-page="music">Música</button><button data-page="quiz">Quiz</button><button
+        data-page="poster">Pôster</button>
+    </nav>
+  </header>
+  <main class="wrap">
+    <section class="page active" id="home">
+      <div class="cover">
+        <div class="cover-copy"><span class="kicker">A edição de estreia · 2026</span>
+          <h2>Encontre beleza<br>no escuro.</h2>
+          <div class="subtitle">Moda • mistério • música • magia</div>
+          <p class="lead">Uma revista para quem transforma o diferente em arte e encontra encanto onde a noite começa.
+          </p><button class="button" data-go="editorial">Entre na edição ↗</button>
+        </div>
+        <div class="cover-art"><img src="eclipse-cover-art.svg"
+            alt="Ilustração gótica de uma figura de capa diante de uma mansão sob um eclipse"><span
+            class="cover-label">Edição No. 01 — Moonlight</span></div>
+      </div>
+      <div class="section-head">
+        <div><small>Dentro desta edição</small>
+          <h2 class="display" style="font-size:42px;margin:5px 0">Histórias sob a lua</h2>
+        </div>
+      </div>
+      <div class="headline-grid">
+        <article class="tile" data-go="horoscopes"><span class="num">01</span>
+          <h3>Seu arcano pessoal</h3>
+          <p>Descubra a carta que acompanha seu caminho.</p>
+        </article>
+        <article class="tile" data-go="fashion"><span class="num">02</span>
+          <h3>Gótico para toda estação</h3>
+          <p>Ideias usáveis para dias quentes e frios.</p>
+        </article>
+        <article class="tile" data-go="film"><span class="num">03</span>
+          <h3>Vampiros voltam ao cinema?</h3>
+          <p>Romance, suspense e trilhas inesquecíveis.</p>
+        </article>
+        <article class="tile" data-go="music"><span class="num">04</span>
+          <h3>Bandas para ouvir à meia-noite</h3>
+          <p>Type O Negative, HIM, The Cure e mais.</p>
+        </article>
+        <article class="tile" data-go="books"><span class="num">05</span>
+          <h3>Biblioteca sombria</h3>
+          <p>Clássicos sobrenaturais para sua estante.</p>
+        </article>
+        <article class="tile" data-go="beauty"><span class="num">06</span>
+          <h3>Beleza dark sem complicação</h3>
+          <p>Cuidados diários e maquiagem criativa.</p>
+        </article>
+      </div>
+    </section>
+    <section class="page" id="editorial">
+      <div class="section-head">
+        <div><small>Palavra da redação</small>
+          <h2 class="display">Editorial</h2>
+        </div><small>01 / 13</small>
+      </div>
+      <div class="columns">
+        <div>
+          <p class="lead">There is beauty in the dark. There is elegance in the different. Eclipse Magazine was born for
+            those who love art, music, fashion, and mystery.</p>
+          <p class="lead">Esta edição é um convite para explorar estilos, histórias e sons que fazem a imaginação
+            florescer. Vista o que combina com você, descubra uma nova banda e deixe a curiosidade guiar a próxima
+            página.</p>
+        </div>
+        <div class="quote">“Stay strange. Stay beautiful.”<br><span class="note">— A equipe Eclipse</span></div>
+      </div><button class="button" data-go="horoscopes">Continuar para os astros →</button>
+    </section>
+    <section class="page" id="horoscopes">
+      <div class="section-head">
+        <div><small>Signos, símbolos e ciclos</small>
+          <h2 class="display">Astros & Tarot</h2>
+        </div><small>02 / 13</small>
+      </div>
+      <div class="card">
+        <h3>Seu signo solar</h3>
+        <p>Escolha seu signo para ver elemento e arcano associado nesta edição.</p>
+        <div class="sign-grid" id="signGrid"></div>
+      </div>
+      <div class="columns" style="margin-top:18px">
+        <div class="card">
+          <h3>Descubra seu arcano pessoal</h3>
+          <p some>Some os algarismos da sua data de nascimento. Continue somando os algarismos do resultado até chegar a
+            um número entre 1 e 22.</p><label class="note" for="birth">Sua data de nascimento</label><input
+            class="field" id="birth" type="date"><button class="button" id="arcanaBtn">Revelar meu arcano</button>
+          <div id="arcanaResult" class="result" aria-live="polite"></div>
+          <p class="note">Uma brincadeira simbólica e editorial, para reflexão e entretenimento.</p>
+        </div>
+        <div class="card">
+          <h3>Como funciona</h3>
+          <p>Exemplo: 14/08/2008 → 1+4+0+8+2+0+0+8 = 23 → 2+3 = 5. O arcano associado ao número 5 é O Hierofante.</p>
+          <p>O Tarot tem diferentes tradições e formas de cálculo. Aqui usamos uma versão simples inspirada nos Arcanos
+            Maiores.</p>
+        </div>
+      </div>
+    </section>
+    <section class="page" id="beauty">
+      <div class="section-head">
+        <div><small>Glow your way</small>
+          <h2 class="display">Beleza & autocuidado</h2>
+        </div><small>04 / 13</small>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <h3>❄️ Acorde a pele</h3>
+          <p>Lavar o rosto com água fresca pode ajudar a reduzir o aspecto inchado e deixar a pele com aparência
+            desperta.</p>
+        </div>
+        <div class="card">
+          <h3>💧 Água ao longo do dia</h3>
+          <p>Hidratação faz parte do cuidado geral com o corpo. Tenha água por perto e beba conforme sua necessidade.
+          </p>
+        </div>
+        <div class="card">
+          <h3>☀️ Protetor solar</h3>
+          <p>Inclua proteção solar adequada à sua pele na rotina, mesmo em dias nublados. Siga as instruções do produto.
+          </p>
+        </div>
+        <div class="card">
+          <h3>😴 Descanse</h3>
+          <p>Uma rotina regular de sono ajuda no bem-estar e dá espaço para o corpo se recuperar.</p>
+        </div>
+        <div class="card">
+          <h3>🍓 Comida de verdade</h3>
+          <p>Frutas, vegetais e refeições variadas ajudam a compor uma alimentação equilibrada.</p>
+        </div>
+        <div class="card">
+          <h3>🎃 Maquiagem de ferida cenográfica</h3>
+          <p>Para um look de Halloween, prefira produtos próprios para maquiagem facial. Faça teste de contato, evite
+            olhos e pele irritada e remova com delicadeza.</p>
+          <p class="note">A cola escolar não é cosmético e pode irritar a pele. Não use no rosto.</p>
+        </div>
+      </div>
+    </section>
+    <section class="page" id="fashion">
+      <div class="section-head">
+        <div><small>Peças, texturas e atitude</small>
+          <h2 class="display">Gótico, mas usável</h2>
+        </div><small>05 / 13</small>
+      </div>
+      <div class="columns">
+        <div class="card">
+          <h3>☀️ Dias quentes</h3>
+          <ul class="checklist">
+            <li>Vestido preto leve</li>
+            <li>Shorts jeans escuros</li>
+            <li>Meia-calça arrastão curta ou meia leve</li>
+            <li>Botas confortáveis</li>
+            <li>Colar prateado</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>❄️ Dias frios</h3>
+          <ul class="checklist">
+            <li>Saia xadrez com meia-calça</li>
+            <li>Botas de combate</li>
+            <li>Cachecol vinho</li>
+            <li>Luvas e sobreposições</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card" style="margin-top:18px">
+        <h3>Essenciais para repetir de mil jeitos</h3>
+        <p>Jaqueta de couro ou alternativa vegana · botas · saia preta · camisa oversized · corset usado sobre uma blusa
+          · cinto com ilhoses · anéis e colares prateados.</p>
+      </div>
+    </section>
+    <section class="page" id="film">
+      <div class="section-head">
+        <div><small>Filme em destaque</small>
+          <h2 class="display">O Fantasma da Ópera</h2>
+        </div><small>06 / 13</small>
+      </div>
+      <div class="columns">
+        <div class="card">
+          <div class="kicker">Musical · Romance · Drama · 2004</div>
+          <h3 style="font-size:34px">Uma história que ecoa.</h3>
+          <div class="rating">★★★★★ <span style="color:#b9adb8;letter-spacing:0">5/5</span></div>
+          <p>Se você gosta de mistério, romance e música grandiosa, <i>O Fantasma da Ópera</i> merece um lugar na sua
+            lista. Christine, uma jovem cantora, chama a atenção de uma figura misteriosa que vive sob a Ópera de Paris.
+          </p>
+          <p>A trilha marcante, os figurinos e a atmosfera gótica tornam cada cena teatral e envolvente. A história
+            mistura suspense e emoção em um romance sombrio.</p>
+          <div style="border-top:1px solid var(--line);margin-top:20px;padding-top:16px">
+            <h3>Sua avaliação</h3>
+            <p class="note">Escolha de 1 a 5 estrelas e deixe sua nota ou comentário. Ela fica salva neste navegador.
+            </p><label class="note" for="filmRating">Nota</label><select class="field" id="filmRating">
+              <option value="">Selecione uma nota</option>
+              <option value="1">★☆☆☆☆ · 1 de 5</option>
+              <option value="2">★★☆☆☆ · 2 de 5</option>
+              <option value="3">★★★☆☆ · 3 de 5</option>
+              <option value="4">★★★★☆ · 4 de 5</option>
+              <option value="5">★★★★★ · 5 de 5</option>
+            </select><label class="note" for="filmNote">Sua resenha</label><textarea class="field" id="filmNote"
+              rows="4" placeholder="O que achou do filme?"></textarea><button class="button" id="saveFilmNote">Salvar
+              minha avaliação</button>
+            <div class="note" id="savedFilmNote" aria-live="polite" style="margin-top:12px"></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Por que assistir?</h3>
+          <ul class="checklist">
+            <li>Estética gótica e cenários grandiosos</li>
+            <li>Figurinos teatrais</li>
+            <li>Trilha sonora poderosa</li>
+            <li>Romance cheio de mistério</li>
+          </ul>
+          <h3>Curiosidades</h3>
+          <p>Baseado no romance de Gaston Leroux. O filme de 2004 tem música de Andrew Lloyd Webber e se passa
+            principalmente na Ópera de Paris.</p>
+          <div class="quote">“Uma história atemporal para almas curiosas.”</div>
+        </div>
+      </div>
+    </section>
+    <section class="page" id="books">
+      <div class="section-head">
+        <div><small>Dark library</small>
+          <h2 class="display">Biblioteca sombria</h2>
+        </div><small>08 / 13</small>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <div class="kicker">Sheridan Le Fanu · 1872</div>
+          <h3>🦇 Carmilla</h3>
+          <p>Uma jovem conhece a enigmática Carmilla, e uma ligação inquietante começa a se formar. Um clássico da
+            literatura vampírica, anterior a Drácula.</p>
+          <p>Atmosfera gótica · mitologia vampírica · suspense</p>
+          <div class="rating">★★★★★</div>
+        </div>
+        <div class="card">
+          <div class="kicker">Edgar Allan Poe · conto</div>
+          <h3>🩸 O poço e o pêndulo</h3>
+          <p>Um prisioneiro tenta sobreviver aos terrores de uma masmorra durante a Inquisição Espanhola. Suspense
+            psicológico em uma corrida contra o tempo.</p>
+          <p>Horror psicológico · tensão · sobrevivência</p>
+          <div class="rating">★★★★★</div>
+        </div>
+        <div class="card">
+          <div class="kicker">Edgar Allan Poe · conto</div>
+          <h3>❤️ O coração delator</h3>
+          <p>Um narrador insiste que está são enquanto conta um crime terrível. A culpa cresce até que ele acredita
+            ouvir o coração da vítima.</p>
+          <p>Paranoia · culpa · narrador não confiável</p>
+          <div class="rating">★★★★★</div>
+        </div>
+      </div>
+      <div class="quote" style="margin-top:22px">“Clássicos sombrios continuam inspirando filmes, músicas e novas
+        histórias.”</div>
+    </section>
+    <section class="page" id="stories">
+      <div class="section-head">
+        <div><small>Conto original Eclipse</small>
+          <h2 class="display">A página que sussurrava</h2>
+        </div><small>09 / 13</small>
+      </div>
+      <article class="story">
+        <p>Na última fileira da biblioteca da escola, Lia encontrou um livro sem título. A capa era fria como uma janela
+          no inverno. Dentro, todas as páginas estavam em branco, menos a última.</p>
+        <p>Ali, uma frase aparecia em tinta violeta: “Você chegou tarde.” Lia olhou para o relógio. A biblioteca estava
+          prestes a fechar, mas o corredor além da porta parecia comprido demais, mergulhado numa noite que não existia
+          do lado de fora.</p>
+        <p>Virou a página. A frase mudou: “Não olhe para a janela.”</p>
+        <p>O vidro refletia as estantes, a luz, o rosto pálido de Lia. E, atrás dela, uma silhueta segurava outro livro
+          idêntico.</p>
+        <p>Então a campainha tocou. O livro bateu sozinho, fechando-se com um sussurro.</p>
+        <p><em>Na manhã seguinte, o exemplar ainda estava sobre a mesa. Agora havia duas assinaturas na contracapa.</em>
+        </p>
+      </article>
+    </section>
+    <section class="page" id="music">
+      <div class="section-head">
+        <div><small>Play it after dark</small>
+          <h2 class="display">Gothic Playlist</h2>
+        </div><small>10 / 13</small>
+      </div>
+      <div class="card spotify-panel">
+        <div class="spotify-brand">♫ Spotify · busca direta</div>
+        <p>Digite o nome de uma banda ou música para abrir a busca correspondente no Spotify. Não precisa conectar conta
+          nem configurar nada.</p>
+        <form id="spotifySearchForm" class="spotify-controls"><input id="musicSearch" class="field"
+            placeholder="Ex.: HIM, Type O Negative, Join Me" aria-label="Nome de música ou banda"><button id="searchBtn"
+            class="button" type="submit">Pesquisar no Spotify ↗</button></form>
+        <div id="musicMessage" class="note" aria-live="polite" style="margin-top:10px">A pesquisa abre o Spotify. Se o
+          app não abrir, você pode continuar no navegador.</div>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <h3>Type O Negative</h3>
+          <p>Estados Unidos · Gothic metal · <i>October Rust</i></p><a class="button secondary"
+            href="https://open.spotify.com/search/Type%20O%20Negative%20October%20Rust" target="_blank"
+            rel="noopener noreferrer">Ouvir no Spotify ↗</a>
+        </div>
+        <div class="card">
+          <h3>HIM</h3>
+          <p>Finlândia · Love metal · <i>Razorblade Romance</i></p><a class="button secondary"
+            href="https://open.spotify.com/search/HIM%20Razorblade%20Romance" target="_blank"
+            rel="noopener noreferrer">Ouvir no Spotify ↗</a>
+        </div>
+        <div class="card">
+          <h3>Lacuna Coil</h3>
+          <p>Itália · Gothic metal · <i>Comalies</i></p><a class="button secondary"
+            href="https://open.spotify.com/search/Lacuna%20Coil%20Comalies" target="_blank"
+            rel="noopener noreferrer">Ouvir no Spotify ↗</a>
+        </div>
+        <div class="card">
+          <h3>Evanescence</h3>
+          <p>Estados Unidos · Rock alternativo · <i>Fallen</i></p><a class="button secondary"
+            href="https://open.spotify.com/search/Evanescence%20Fallen" target="_blank" rel="noopener noreferrer">Ouvir
+            no Spotify ↗</a>
+        </div>
+        <div class="card">
+          <h3>The Cure</h3>
+          <p>Reino Unido · Rock gótico / alternativo · <i>Disintegration</i></p><a class="button secondary"
+            href="https://open.spotify.com/search/The%20Cure%20Disintegration" target="_blank"
+            rel="noopener noreferrer">Ouvir no Spotify ↗</a>
+        </div>
+        <div class="card">
+          <h3>Mais uma descoberta</h3>
+          <p>Digite qualquer artista ou faixa e pesquise no Spotify sem conectar sua conta.</p>
+        </div>
+      </div>
+    </section>
+    <section class="page" id="quiz">
+      <div class="section-head">
+        <div><small>Responda sem pensar muito</small>
+          <h2 class="display">Qual criatura da noite você seria?</h2>
+        </div><small>11 / 13</small>
+      </div>
+      <form id="quizForm" class="card">
+        <div id="quizQuestions"></div><button class="button" type="submit">Revelar resultado</button>
+        <div id="quizResult" class="result" aria-live="polite"></div>
+      </form>
+    </section>
+    <section class="page" id="poster">
+      <div class="poster">
+        <div><span class="kicker">Eclipse Magazine · edição 01</span>
+          <h2>Stay strange.<br>Stay beautiful.</h2><span class="subtitle">Sob o mesmo céu, cada estrela é
+            diferente.</span>
+        </div>
+      </div>
+      <p class="note" style="text-align:center;margin-top:12px">Pôster tipográfico original da edição.</p>
+    </section>
+  </main>
+  <footer class="footer">Próxima edição · Especial Halloween — fantasias, filmes, receitas, lendas urbanas e Tim Burton.
+  </footer>
+  <script>
+    const pages = [...document.querySelectorAll('.page')], nav = [...document.querySelectorAll('.nav button')];
+    function go(id) { pages.forEach(p => p.classList.toggle('active', p.id === id)); nav.forEach(b => b.classList.toggle('active', b.dataset.page === id)); window.scrollTo({ top: 0, behavior: 'smooth' }) }
+    nav.forEach(b => b.onclick = () => go(b.dataset.page)); document.querySelectorAll('[data-go]').forEach(e => e.onclick = () => go(e.dataset.go));
+    const signs = [['♈ Áries', 'Fogo', 'O Imperador'], ['♉ Touro', 'Terra', 'A Imperatriz'], ['♊ Gêmeos', 'Ar', 'Os Enamorados'], ['♋ Câncer', 'Água', 'O Carro'], ['♌ Leão', 'Fogo', 'A Força'], ['♍ Virgem', 'Terra', 'O Eremita'], ['♎ Libra', 'Ar', 'A Justiça'], ['♏ Escorpião', 'Água', 'A Morte'], ['♐ Sagitário', 'Fogo', 'A Temperança'], ['♑ Capricórnio', 'Terra', 'O Diabo'], ['♒ Aquário', 'Ar', 'A Estrela'], ['♓ Peixes', 'Água', 'A Lua']];
+    document.getElementById('signGrid').innerHTML = signs.map(s => `<div class="sign"><b>${s[0]}</b><span>${s[1]} · ${s[2]}</span></div>`).join('');
+    const majors = ['', 'O Mago', 'A Sacerdotisa', 'A Imperatriz', 'O Imperador', 'O Hierofante', 'Os Enamorados', 'O Carro', 'A Força', 'O Eremita', 'A Roda da Fortuna', 'A Justiça', 'O Enforcado', 'A Morte', 'A Temperança', 'O Diabo', 'A Torre', 'A Estrela', 'A Lua', 'O Sol', 'O Julgamento', 'O Mundo', 'O Louco'];
+    document.getElementById('arcanaBtn').onclick = () => { const v = document.getElementById('birth').value; if (!v) { document.getElementById('arcanaResult').textContent = 'Escolha sua data primeiro.'; return } let n = v.replaceAll('-', '').split('').reduce((a, x) => a + Number(x), 0); while (n > 22) { n = String(n).split('').reduce((a, x) => a + Number(x), 0) } if (n === 0) n = 22; document.getElementById('arcanaResult').textContent = `${n} · ${majors[n]}` };
+    const savedRating = localStorage.getItem('eclipse_film_rating') || '', savedNote = localStorage.getItem('eclipse_film_note') || ''; el('filmRating').value = savedRating; el('filmNote').value = savedNote; if (savedRating) el('savedFilmNote').textContent = `Sua avaliação salva: ${'★'.repeat(Number(savedRating))}${'☆'.repeat(5 - Number(savedRating))} · ${savedRating}/5${savedNote ? ' — ' + savedNote : ''}`; el('saveFilmNote').onclick = () => { const rating = el('filmRating').value, note = el('filmNote').value.trim(); if (!rating) { el('savedFilmNote').textContent = 'Escolha uma nota antes de salvar.'; return } localStorage.setItem('eclipse_film_rating', rating); localStorage.setItem('eclipse_film_note', note); el('savedFilmNote').textContent = `Sua avaliação salva: ${'★'.repeat(Number(rating))}${'☆'.repeat(5 - Number(rating))} · ${rating}/5${note ? ' — ' + note : ''}` };
+    const qs = [['Escolha um lugar para passar a noite', 'Um castelo antigo', 'Uma clareira sob a lua', 'Uma floresta misteriosa', 'Um teatro abandonado'], ['Sua companhia ideal', 'Um livro e chá', 'Velas e cartas', 'Uma caminhada noturna', 'Silêncio e uma janela aberta'], ['Escolha uma qualidade', 'Elegância', 'Intuição', 'Coragem', 'Mistério'], ['Seu acessório favorito', 'Anel de prata', 'Cristal', 'Botas', 'Capa escura'], ['A trilha sonora seria…', 'Rock clássico', 'Synth e feitiços', 'Riffs pesados', 'Piano distante'], ['O que te guia?', 'Lealdade', 'Curiosidade', 'Instinto', 'Memórias'], ['Sua cor da noite', 'Vinho', 'Roxo', 'Preto', 'Prata'], ['Seu poder secreto', 'Encantar', 'Transformar', 'Proteger', 'Desaparecer'], ['Uma hora perfeita', 'Meia-noite', 'Crepúsculo', 'Lua cheia', 'Antes do amanhecer'], ['Escolha uma palavra', 'Eternidade', 'Magia', 'Liberdade', 'Segredo']];
+    document.getElementById('quizQuestions').innerHTML = qs.map((q, i) => `<div class="quiz-q"><b>${i + 1}. ${q[0]}</b>${q.slice(1).map((a, j) => `<label><input required type="radio" name="q${i}" value="${j}">${a}</label>`).join('')}</div>`).join('');
+    document.getElementById('quizForm').onsubmit = e => { e.preventDefault(); const scores = [0, 0, 0, 0]; qs.forEach((_, i) => scores[Number(new FormData(e.target).get('q' + i))]++); const names = ['🦇 Vampiro', '🌙 Bruxa', '🐺 Lobisomem', '🕯 Fantasma']; document.getElementById('quizResult').textContent = `Seu resultado: ${names[scores.indexOf(Math.max(...scores))]}!`; };
+
+    const el = id => document.getElementById(id);
+    function openSpotifySearch(query) { const q = String(query || '').trim(); if (!q) { el('musicMessage').textContent = 'Digite o nome de uma banda ou música.'; el('musicSearch').focus(); return } location.href = 'https://open.spotify.com/search/' + encodeURIComponent(q) }
+    el('spotifySearchForm').addEventListener('submit', e => { e.preventDefault(); openSpotifySearch(el('musicSearch').value) });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Noite de eclipse na mansão</title>
+  <desc id="desc">Ilustração editorial gótica de uma figura de capa diante de uma mansão sob um eclipse vinho.</desc>
+  <defs>
+    <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#100d17"/><stop offset=".56" stop-color="#281724"/><stop offset="1" stop-color="#573044"/></linearGradient>
+    <radialGradient id="halo"><stop stop-color="#d8bac3" stop-opacity=".72"/><stop offset=".4" stop-color="#a95971" stop-opacity=".32"/><stop offset="1" stop-color="#6c2d48" stop-opacity="0"/></radialGradient>
+    <linearGradient id="moon" x2=".85" y2="1"><stop stop-color="#f4e4df"/><stop offset="1" stop-color="#aa8290"/></linearGradient>
+    <linearGradient id="cloak" x2="1" y2=".3"><stop stop-color="#080a11"/><stop offset=".48" stop-color="#211720"/><stop offset=".75" stop-color="#402237"/><stop offset="1" stop-color="#100d14"/></linearGradient>
+    <linearGradient id="stone" x2="0" y2="1"><stop stop-color="#342437"/><stop offset="1" stop-color="#110e17"/></linearGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="26"/></filter>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".72" numOctaves="3"/><feColorMatrix values=".3 0 0 0 .15 .3 0 0 0 .1 .3 0 0 0 .14 0 0 0 .16 0"/></filter>
+    <pattern id="stars" width="137" height="113" patternUnits="userSpaceOnUse"><circle cx="14" cy="19" r="1.5" fill="#f1dce1" opacity=".75"/><circle cx="82" cy="63" r="1" fill="#f1dce1" opacity=".6"/><path d="M116 22v8m-4-4h8" stroke="#d9bac5" stroke-width=".8" opacity=".65"/><circle cx="46" cy="91" r=".8" fill="#fff" opacity=".6"/></pattern>
+  </defs>
+  <path fill="url(#sky)" d="M0 0h900v1000H0z"/>
+  <circle cx="628" cy="290" r="235" fill="url(#halo)" filter="url(#blur)"/>
+  <circle cx="628" cy="290" r="142" fill="url(#moon)"/>
+  <circle cx="684" cy="261" r="137" fill="#241520"/>
+  <path d="M0 0h900v690H0z" fill="url(#stars)"/>
+  <g fill="#ead3db" opacity=".6"><circle cx="111" cy="178" r="2"/><circle cx="334" cy="97" r="1.5"/><circle cx="806" cy="118" r="2"/><circle cx="491" cy="238" r="1.4"/><circle cx="246" cy="306" r="1.5"/><circle cx="767" cy="420" r="1.5"/><circle cx="160" cy="424" r="1"/></g>
+  <path d="M0 647 123 571l88 59 132-94 107 91 119-88 107 88 111-99 113 75v397H0z" fill="#17121d"/>
+  <path d="M0 735q180-54 322 0t287-8q165-56 291 8v265H0z" fill="#100d15"/>
+  <!-- distant ironwork -->
+  <g stroke="#a47b8d" stroke-width="3" opacity=".5" fill="none"><path d="M40 725v-49m-12 49v-30m24 30v-30m-25 0h26m-34 11h43M824 732v-59m-12 59v-37m24 37v-37m-25 0h26m-34 12h43"/></g>
+  <!-- gothic manor -->
+  <g>
+    <path fill="#100d16" d="M284 786V465l58-46 57 46v-75l76-112 77 112v75l57-46 59 46v321z"/>
+    <path fill="url(#stone)" stroke="#725064" stroke-width="2" d="M317 786V484l25-22 26 22v-59l107-151 107 151v59l26-22 25 22v302z"/>
+    <path fill="#110e17" stroke="#8d6377" stroke-width="2" d="M405 786V485l70-103 70 103v301z"/>
+    <path fill="#5e354d" d="M425 488l50-74 50 74z"/>
+    <path fill="#100d15" d="M447 786V577q28-57 57 0v209z"/>
+    <path fill="#100d15" d="M338 786V531q18-36 36 0v255zM579 786V531q18-36 36 0v255z"/>
+    <path stroke="#d7a7b8" stroke-width="3" opacity=".55" d="M339 542v31m11-46v55m240-40v31m11-46v55M449 485v44m18-71v71m18-71v71m18-44v44"/>
+    <path fill="#bd748b" opacity=".72" d="M468 626h14v37h-14zM349 565h9v27h-9zM590 565h9v27h-9z"/>
+    <path fill="#0c0a11" d="M461 786v-72a14 14 0 0 1 28 0v72z"/>
+    <path stroke="#8b6278" stroke-width="2" fill="none" d="M284 786h405M317 483h298M342 420h52m146 0h51M417 485l58-87 58 87"/>
+    <path fill="#100d16" d="M323 465l19-77 20 77zm233 0 19-77 20 77zM444 398l31-108 31 108z"/>
+  </g>
+  <!-- foreground roses and grass -->
+  <g fill="none" stroke="#76505e" stroke-width="3" opacity=".8"><path d="M120 1000q30-88 16-156m-4 100q-32-18-39-43m46 22q30-27 36-55M760 1000q-19-73-3-132m2 76q30-19 40-46m-41 25q-28-24-34-48"/></g>
+  <g fill="#9b5d70" opacity=".8"><path d="M97 798q18-21 34 0-17 25-34 0m34 13q18-21 34 0-16 25-34 0m580 22q17-22 34-2-15 25-34 2m32-20q16-20 31 1-17 22-31-1"/></g>
+  <!-- cloaked figure -->
+  <ellipse cx="470" cy="1004" rx="233" ry="30" fill="#08070d" opacity=".78"/>
+  <path fill="url(#cloak)" stroke="#604052" stroke-width="2" d="M386 1000q29-183 26-333 1-104 57-131 56 26 59 131-3 151 29 333z"/>
+  <path fill="#211722" stroke="#8a6275" stroke-width="2" d="M410 678q3-115 59-150 56 35 59 150l-19 26q-39-24-80 0z"/>
+  <path fill="#17121b" d="M427 665q4-81 42-104 38 23 42 104l-20 15h-44z"/>
+  <path fill="#b47e90" d="M448 631q21-18 42 0l-7 13h-28z" opacity=".75"/>
+  <path fill="none" stroke="#bd8b9c" stroke-width="2" opacity=".55" d="M399 764q-4 102-27 179m178-179q5 102 28 179"/>
+  <!-- small flying ravens -->
+  <g fill="none" stroke="#09080e" stroke-width="5" stroke-linecap="round"><path d="M197 368q18-20 36 0 19-21 37 0m291-35q15-17 30 0 15-17 30 0"/></g>
+  <rect width="900" height="1000" filter="url(#grain)" opacity=".19"/>
+</svg>
